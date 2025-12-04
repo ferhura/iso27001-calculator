@@ -50,7 +50,7 @@ exports.handler = async (event, context) => {
     // Contenido del email
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: process.env.RECIPIENT_EMAIL,
+      to: process.env.RECIPIENT_EMAIL || process.env.SMTP_USER, // Fallback to sender if recipient is missing
       subject: 'Nueva solicitud de cotización ISO 27001',
       html: `
         <h2>Nueva solicitud de cotización ISO 27001</h2>
