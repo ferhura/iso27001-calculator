@@ -1,0 +1,26 @@
+[build]
+  base = "frontend"
+  publish = "dist"
+  command = "npm run build"
+
+[functions]
+  directory = "../netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Content-Type = "text/css"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "ALLOWALL"
+    Content-Security-Policy = "frame-ancestors *"
