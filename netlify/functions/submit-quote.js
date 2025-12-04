@@ -47,10 +47,13 @@ exports.handler = async (event, context) => {
       pass: process.env.SMTP_PASS ? '***' : 'missing'
     });
 
+    const recipient = process.env.RECIPIENT_EMAIL || process.env.SMTP_USER;
+    console.log('Resolved Recipient:', recipient);
+
     // Contenido del email
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: process.env.RECIPIENT_EMAIL || process.env.SMTP_USER, // Fallback to sender if recipient is missing
+      to: recipient,
       subject: 'Nueva solicitud de cotización ISO 27001',
       html: `
         <h2>Nueva solicitud de cotización ISO 27001</h2>
