@@ -40,6 +40,13 @@ exports.handler = async (event, context) => {
       }
     });
 
+    console.log('SMTP Config:', {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER ? '***' : 'missing',
+      pass: process.env.SMTP_PASS ? '***' : 'missing'
+    });
+
     // Contenido del email
     const mailOptions = {
       from: process.env.SMTP_USER,
